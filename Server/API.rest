@@ -1,0 +1,11 @@
+###
+http://localhost:8000
+
+###
+GET http://localhost:8001/api/product
+
+###
+GET http://localhost:8001/api/product/64e75a69067ed8ce809351fa
+
+###
+GET http://localhost:8001/api/postdata/
