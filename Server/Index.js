@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import dotenv from 'dotenv'
 import connect from './db/connect.js'
 import productRoute from "./router/productRoute.js"
-import {addData, addDataToMongo} from '../Server/db/data.js'
+import { addData, addDataToMongo } from '../Server/db/data.js'
 dotenv.config();
 
 
