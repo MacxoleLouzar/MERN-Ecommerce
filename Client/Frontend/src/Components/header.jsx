@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../context/AppContext";
-import { BsTrash } from 'react-icons/bs'
 
 const header = () => {
   const { cart, removeFromCart } = useContext(AppContext);
@@ -86,7 +86,7 @@ const header = () => {
               </label>
               <div
                 tabIndex={0}
-                className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+                className="mt-3 z-[1] card card-compact dropdown-content w-64 bg-base-100 shadow"
               >
                 <div className="card-body">
                   {cart.length > 0 ? (
@@ -103,7 +103,7 @@ const header = () => {
                         <td className="mt-5 font-bold">R{item.price}</td>
 
                         <td>
-                          <button onClick={() => removeToCart(item)}>
+                          <button onClick={() => removeFromCart(item)}>
                             <BsTrash className="text-lg mt-5 btn-outline btn-block" />
                           </button>
                         </td>
