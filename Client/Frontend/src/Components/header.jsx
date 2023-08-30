@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../context/AppContext";
+import { BsTrash } from 'react-icons/bs'
 
 const header = () => {
   const { cart, removeFromCart } = useContext(AppContext);
@@ -106,16 +107,6 @@ const header = () => {
                             <BsTrash className="text-lg mt-5 btn-outline btn-block" />
                           </button>
                         </td>
-                        <span className="text-info">Subtotal: R{total}</span>
-                        <div className="card-actions">
-                          <button
-                            className="btn btn-primary btn-block"
-                            Link
-                            to={`/Checkout`}
-                          >
-                            Checkout
-                          </button>
-                        </div>
                       </tr>
                     ))
                   ) : (
@@ -126,6 +117,16 @@ const header = () => {
                       </span>
                     </tr>
                   )}
+                  <span className="text-info">Subtotal: R{total}</span>
+                  <div className="card-actions">
+                    <button
+                      className="btn btn-primary btn-block"
+                      Link
+                      to={`/Checkout`}
+                    >
+                      Checkout
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
