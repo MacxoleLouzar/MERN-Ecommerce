@@ -14,9 +14,9 @@ const Home = () => {
       .then((data) => addProduct(data.products));
   }, []);
   return (
-    <div className="h-full py-8">
+    <div className="h-full">
       <Header />
-      <div className="mockup-window border border-base-300">
+      <div className="px-8">
         <Slider />
         <Catergory />
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
