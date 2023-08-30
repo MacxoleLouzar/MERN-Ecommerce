@@ -86,7 +86,7 @@ const header = () => {
               </label>
               <div
                 tabIndex={0}
-                className="mt-3 z-[1] card card-compact dropdown-content w-64 bg-base-100 shadow"
+                className="mt-3 z-[1] card card-compact dropdown-content w-[20rem] bg-base-300 shadow"
               >
                 <div className="card-body">
                   {cart.length > 0 ? (
