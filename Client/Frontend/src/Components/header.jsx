@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AppContext from "../context/AppContext";
 
 const header = () => {
+  const { cart, removeFromCart } = useContext(AppContext);
+  const [total, setTotal] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    TotalCount();
+  }, [cart]);
+
+  const TotalCount = () => {
+    let tot = 0;
+    for (let x = 0; x < cart.length; x++) {
+      tot += cart[x].price;
+    }
+    setTotal(tot);
+  };
+
   return (
     <div>
       <div className="navbar bg-base-200">
@@ -60,7 +78,9 @@ const header = () => {
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                  <span className="badge badge-sm indicator-item">8</span>
+                  <span className="badge badge-sm indicator-item">
+                    {cart.length}
+                  </span>
                 </div>
               </label>
               <div
@@ -68,13 +88,44 @@ const header = () => {
                 className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
               >
                 <div className="card-body">
-                  <span className="font-bold text-lg">8 Items</span>
-                  <span className="text-info">Subtotal: $999</span>
-                  <div className="card-actions">
-                    <button className="btn btn-primary btn-block">
-                      View cart
-                    </button>
-                  </div>
+                  {cart.length > 0 ? (
+                    cart.map((item, index) => (
+                      <tr key={index} className="flex gap-4 my-2 items-center">
+                        <td>
+                          <img
+                            src={item.image}
+                            alt=""
+                            className="cart-image w-28 h-28 object-cover rounded-xl border border-slate-500"
+                          />
+                        </td>
+                        <td className="mt-5">{item.name}</td>
+                        <td className="mt-5 font-bold">R{item.price}</td>
+
+                        <td>
+                          <button onClick={() => removeToCart(item)}>
+                            <BsTrash className="text-lg mt-5 btn-outline btn-block" />
+                          </button>
+                        </td>
+                        <span className="text-info">Subtotal: R{total}</span>
+                        <div className="card-actions">
+                          <button
+                            className="btn btn-primary btn-block"
+                            Link
+                            to={`/Checkout`}
+                          >
+                            Checkout
+                          </button>
+                        </div>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td className="text-center"></td>
+                      <span className="font-bold text-lg">
+                        No Item added yet
+                      </span>
+                    </tr>
+                  )}
                 </div>
               </div>
             </div>

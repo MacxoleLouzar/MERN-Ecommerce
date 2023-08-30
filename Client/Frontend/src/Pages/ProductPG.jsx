@@ -40,7 +40,7 @@ const ProductPG = () => {
 
             <div>
               <button
-                className="btn btn-active"
+                className="btn btn-active boarder-liner"
                 onClick={() => addToCart(product)}
               >
                 <span className="">Add to cart</span>
