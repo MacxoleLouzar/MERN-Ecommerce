@@ -15,7 +15,6 @@ const Home = () => {
   }, []);
   return (
     <div className="h-full">
-      <Header />
       <div className="px-8">
         <Slider />
         <Catergory />

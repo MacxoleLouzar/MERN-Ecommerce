@@ -58,7 +58,7 @@ const header = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl" onClick={()=>navigate('/')}>daisyUI</a>
         </div>
         <div className="navbar-end">
           <div className="display-flex">
