@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Slider from "../Components/Slider";
 import Catergory from "../Components/catergory";
-import Header from "../Components/header";
 import ProductCp from "../Components/productCp";
 import AppContext from "../context/AppContext";
 
