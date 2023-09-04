@@ -1,5 +1,6 @@
 import ProductModel from "../models/ProductModel.js";
 
+//GET all products
 const getAllProducts = async (req, res) => {
   try {
     const products = await ProductModel.find({});
@@ -9,6 +10,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+//GET a single product
 const getSingleProduct = async (req, res) => {
   const _id = req.params.id;
   try {
@@ -19,6 +21,7 @@ const getSingleProduct = async (req, res) => {
   }
 };
 
+//Post a product
 const addProduct = async (req, res) => {
   try {
     res.json({ data: "Product added successful" });

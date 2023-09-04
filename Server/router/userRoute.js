@@ -1,11 +1,11 @@
 import express from "express";
 
-import { getAllUser, register, login } from '../controller/UserController'
+import { getAllUser, login, register } from "../controller/UserController.js";
 
-const route = express.Router()
+const route = express.Router();
 
-route.get('/', getAllUser)
-route.post('/', register)
-route.post('/', login)
+route.get("/", getAllUser);
+route.post("/", register);
+route.post("/", login);
 
-export default route
+export default route;

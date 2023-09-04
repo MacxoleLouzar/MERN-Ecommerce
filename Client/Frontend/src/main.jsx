@@ -7,6 +7,7 @@ import ProductPG from "./Pages/ProductPG.jsx";
 import Login from "./Pages/Login.jsx";
 import AppState from "./context/AppState.jsx";
 import Layout from "./Components/Layout";
+import Checkout from "./Pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/Checkout",
+        element: <Checkout />,
       },
     ],
   },
