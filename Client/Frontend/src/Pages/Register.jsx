@@ -22,7 +22,7 @@ const Register = () => {
       return;
     }
 
-    fetch("http://localhost:8001/api/user", {
+    fetch("http://localhost:8001/api/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -108,6 +108,9 @@ const Register = () => {
               <button className="btn btn-outline" onClick={OnRegister()}>
                 Register
               </button>
+              <a href="login" className="label-text-alt link link-hover">
+                Already a member LOGIN
+              </a>
             </div>
           </div>
         </div>

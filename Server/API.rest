@@ -16,3 +16,13 @@ GET http://localhost:8001/api/user
 
 ###
 GET http://localhost:8001/api/order
+
+
+###
+POST http://localhost:8001/api/user/login
+Content-Type: application/json
+
+{
+    "email": "qw",
+    "password": "qw"
+}

@@ -7,8 +7,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { updateUserData } = useContext(AppContext);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const OnLogin = () => {
     //Check all the field
@@ -18,7 +18,7 @@ const Login = () => {
       return;
     }
 
-    fetch("http://localhost:8001/api/user", {
+    fetch("http://localhost:8001/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,14 +27,14 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        data;
+        console.log(data);
         if (data?.error) {
           toast.error(data.error);
           return;
         }
         updateUserData(data);
         localStorage.setItem("log in", JSON.stringify(data));
-        toast.success("Welocme" + data.user.name);
+        toast.success("Welcome" + data.user.name);
         setTimeout(() => navigate("/"), 1000);
       })
       .catch((error) => {
@@ -82,12 +82,12 @@ const Login = () => {
                 </a>
               </label>
               <div id=" " className=" ">
-                Not Yet Registered ?<Link to={"/register"}>Register Us.</Link>
+                <Link to={"/register"}> Not Yet Registered ?</Link>
               </div>
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-outline" onClick={OnLogin}>
+              <button className="btn btn-outline" onClick={OnLogin()}>
                 Login
               </button>
             </div>

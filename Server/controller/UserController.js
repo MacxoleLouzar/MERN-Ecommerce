@@ -20,19 +20,16 @@ const register = async (req, res) => {
     if (!name || !email || !password) {
       return res.json({ error: "All fields are required" });
     }
-
     //Client exist?
 
     const user = await User.findOne({ email });
     if (user) {
       return res.json({ error: "User already exist" });
     }
-
     //Encrypt the password
     const hashpassword = await bcrypt.hash(password, 15);
 
     //add user into database
-
     const newUser = await User({ name, email, password: hashpassword });
     await newUser.save();
 
@@ -43,7 +40,7 @@ const register = async (req, res) => {
   }
 };
 
-const login = async () => {
+const login = async (req, res) => {
   try {
     //Data from client
     const { email, password } = req.body;
@@ -70,7 +67,8 @@ const login = async () => {
         email: user.email,
         dateJoined: user.date,
       },
-      process.env.SECRET_KEY,
+      "" + process.env.JWT_KEY,
+
       { expiresIn: "1h" }
     );
     return res.json({
