@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import AppContext from "../context/AppContext";
 
@@ -34,8 +34,8 @@ const Login = () => {
         }
         updateUserData(data);
         localStorage.setItem("log in", JSON.stringify(data));
+        navigate("/");
         toast.success("Welcome" + data.user.name);
-        setTimeout(() => navigate("/"), 1000);
       })
       .catch((error) => {
         toast.error("Server Error");
@@ -87,7 +87,7 @@ const Login = () => {
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-outline" onClick={OnLogin()}>
+              <button className="btn btn-outline" onClick={OnLogin}>
                 Login
               </button>
             </div>

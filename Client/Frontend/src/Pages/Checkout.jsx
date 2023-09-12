@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { BsTrash } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AppContext from "../context/AppContext";
@@ -9,7 +10,7 @@ const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [accountHolder, setAccountHolder] = useState(user?.name);
   const [cardNumber, setCardNumber] = useState("");
-  const [expireDate, useExpireDate] = useState("");
+  const [expireDate, setExpireDate] = useState("");
   const [cvv, setCvv] = useState("");
 
   const [delievy, setDelievert] = useState(user?.name);
@@ -61,9 +62,9 @@ const Checkout = () => {
     }
 
     const products = cart.map((x) => x._id);
-    const { _id } = user;
+    const { _id } = user.user;
 
-    fetch({
+    fetch(`http://localhost:8001/api/order`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -74,7 +75,8 @@ const Checkout = () => {
       .then((data) => {
         toast.info(data);
         clearCart();
-        setTimeout(() => navigate("/"), 1000);
+        navigate("/orders");
+        console.log(Checkout);
       })
       .catch((error) =>
         toast.error("Something went wrong, please try again later")
@@ -83,7 +85,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <>
+      {user ? (
         <div className="relative mx-auto w-full bg-white">
           <div className="grid min-h-screen grid-cols-10">
             <div className="col-span-full py-6 px-4 sm:py-12 lg:col-span-6 lg:py-24">
@@ -137,7 +139,7 @@ const Checkout = () => {
                         className="mt-1 block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 ring-purple-900"
                         placeholder="Card Expiring Date"
                         value={expireDate}
-                        onChange={(e) => setExpDate(e.target.value)}
+                        onChange={(e) => setExpireDate(e.target.value)}
                       />
                     </div>
 
@@ -155,11 +157,11 @@ const Checkout = () => {
                 </form>
                 {cart.length > 0 && (
                   <button
+                    onClick={Checkout}
                     type="submit"
                     className="mt-4 inline-flex w-full items-center justify-center rounded btn-outline py-2.5 px-4 text-base font-semibold tracking-wide text-black text-opacity-80 outline-none ring-offset-2 transition sm:text-lg"
-                    onClick={checkout}
                   >
-                    Payment
+                    Pay
                   </button>
                 )}
               </div>
@@ -170,7 +172,7 @@ const Checkout = () => {
               <div className="relative">
                 <ul className="space-y-5">
                   <div className="order-summary text-white">
-                    <h3 className="+">Order Online</h3>
+                    <h3 className="+">Ordered Items</h3>
                     <table className="my-4">
                       <tbody>
                         {cart.length > 0 ? (
@@ -220,13 +222,13 @@ const Checkout = () => {
             </div>
           </div>
         </div>
-
+      ) : (
         <div className="container mt-5 py-5 CheckoutPage">
           <div className="display-5 pt-5 text-center ">
             Login in order to checkout
           </div>
         </div>
-      </>
+      )}
     </div>
   );
 };
